@@ -112,8 +112,8 @@ def initram_update():
         os.system(f"update-initramfs -u") # REVIEW: What about kernel variants?
 
 def strap():
-    #excl = sp.check_output("dpkg-query -f '${binary:Package} ${Priority}\n' -W | grep -v 'required\\|important' | awk '{print $1}'", shell=True).decode('utf-8').strip().replace("\n",",")
-    sp.check_call(f"debootstrap --arch {ARCH} {RELEASE} /mnt http://ftp.debian.org/debian", shell=True) # REVIEW --include={packages} ? --variant=minbase ? --exclude={excl}
+    excl = sp.check_output("dpkg-query -f '${binary:Package} ${Priority}\n' -W | grep -v 'required\\|important' | awk '{print $1}'", shell=True).decode('utf-8').strip().replace("\n",",")
+    os.system(f"debootstrap --arch {ARCH} --exclude={excl} {RELEASE} /mnt http://ftp.debian.org/debian") # REVIEW --include={packages} ? --variant=minbase ?
 
 main()
 
