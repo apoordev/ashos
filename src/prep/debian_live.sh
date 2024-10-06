@@ -19,7 +19,7 @@ main() {
     git config --global --add safe.directory $HOME/ashos # prevent fatal error "unsafe repository is owned by someone else"
     #cd ashos
     dialog --stdout --msgbox "CAUTION: If you hit Okay, your HDD will be partitioned. You should confirm you edited script in prep folder!" 0 0
-    /bin/bash ./src/prep/parted_gpt_example.sh $2
+    /bin/bash ./src/prep/parted_mbr_example.sh $2
     #python3 setup.py $1 $2 $3
 }
 
